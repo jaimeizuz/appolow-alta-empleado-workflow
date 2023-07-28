@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { TextInput, FormGroup, Card, CardBody } from '@patternfly/react-core';
-const Form__AltaEmpleado: React.FC<any> = (props: any) => {
+const Form__AltaEmpleado_asignarDiasVacacionesManualmente: React.FC<any> = (
+	props: any
+) => {
 	const [formApi, setFormApi] = useState<any>();
 	const [diasVacaciones, set__diasVacaciones] = useState<number>();
 	const [empleado__apellido1, set__empleado__apellido1] = useState<string>('');
@@ -21,9 +23,6 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 	] = useState<string>('');
 	const [empleado__rol, set__empleado__rol] = useState<string>('');
 	const [empleado__telefono, set__empleado__telefono] = useState<string>('');
-	const [empleadoId, set__empleadoId] = useState<number>();
-	const [ordenadorserialnumber, set__ordenadorserialnumber] =
-		useState<string>('');
 	/* Utility function that fills the form with the data received from the kogito runtime */
 	const setFormData = (data) => {
 		if (!data) {
@@ -45,48 +44,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 		);
 		set__empleado__rol(data?.empleado?.rol ?? '');
 		set__empleado__telefono(data?.empleado?.telefono ?? '');
-		set__empleadoId(data?.empleadoId);
-		set__ordenadorserialnumber(data?.ordenadorserialnumber ?? '');
 	};
 	/* Utility function to generate the expected form output as a json object */
 	const getFormData = useCallback(() => {
 		const formData: any = {};
 		formData.diasVacaciones = diasVacaciones;
-		formData.empleado = {};
-		formData.empleado.apellido1 = empleado__apellido1;
-		formData.empleado.apellido2 = empleado__apellido2;
-		formData.empleado.convenio = empleado__convenio;
-		formData.empleado.departamento = empleado__departamento;
-		formData.empleado.diasvacaciones = empleado__diasvacaciones;
-		formData.empleado.dni = empleado__dni;
-		formData.empleado.edad = empleado__edad;
-		formData.empleado.estado = empleado__estado;
-		formData.empleado.idempleado = empleado__idempleado;
-		formData.empleado.nombre = empleado__nombre;
-		formData.empleado.ordenadorserialnumber = empleado__ordenadorserialnumber;
-		formData.empleado.rol = empleado__rol;
-		formData.empleado.telefono = empleado__telefono;
-		formData.empleadoId = empleadoId;
-		formData.ordenadorserialnumber = ordenadorserialnumber;
 		return formData;
-	}, [
-		diasVacaciones,
-		empleado__apellido1,
-		empleado__apellido2,
-		empleado__convenio,
-		empleado__departamento,
-		empleado__diasvacaciones,
-		empleado__dni,
-		empleado__edad,
-		empleado__estado,
-		empleado__idempleado,
-		empleado__nombre,
-		empleado__ordenadorserialnumber,
-		empleado__rol,
-		empleado__telefono,
-		empleadoId,
-		ordenadorserialnumber,
-	]);
+	}, [diasVacaciones]);
 	/* Utility function to validate the form on the 'beforeSubmit' Lifecycle Hook */
 	const validateForm = useCallback(() => {}, []);
 	/* Utility function to perform actions on the on the 'afterSubmit' Lifecycle Hook */
@@ -127,14 +91,14 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 	return (
 		<div className={'pf-c-form'}>
 			<FormGroup
-				fieldId={'uniforms-0000-0001'}
+				fieldId={'uniforms-0002-0001'}
 				label={'Dias vacaciones'}
 				isRequired={false}>
 				<TextInput
 					type={'number'}
 					name={'diasVacaciones'}
 					isDisabled={false}
-					id={'uniforms-0000-0001'}
+					id={'uniforms-0002-0001'}
 					placeholder={''}
 					step={1}
 					value={diasVacaciones}
@@ -147,13 +111,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						<b>Empleado</b>
 					</label>
 					<FormGroup
-						fieldId={'uniforms-0000-0004'}
+						fieldId={'uniforms-0002-0004'}
 						label={'Apellido 1'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.apellido1'}
-							id={'uniforms-0000-0004'}
-							isDisabled={false}
+							id={'uniforms-0002-0004'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__apellido1}
@@ -161,13 +125,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-0005'}
+						fieldId={'uniforms-0002-0005'}
 						label={'Apellido 2'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.apellido2'}
-							id={'uniforms-0000-0005'}
-							isDisabled={false}
+							id={'uniforms-0002-0005'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__apellido2}
@@ -175,13 +139,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-0006'}
+						fieldId={'uniforms-0002-0006'}
 						label={'Convenio'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.convenio'}
-							id={'uniforms-0000-0006'}
-							isDisabled={false}
+							id={'uniforms-0002-0006'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__convenio}
@@ -189,13 +153,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-0007'}
+						fieldId={'uniforms-0002-0007'}
 						label={'Departamento'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.departamento'}
-							id={'uniforms-0000-0007'}
-							isDisabled={false}
+							id={'uniforms-0002-0007'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__departamento}
@@ -203,14 +167,14 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-0009'}
+						fieldId={'uniforms-0002-0009'}
 						label={'Diasvacaciones'}
 						isRequired={false}>
 						<TextInput
 							type={'number'}
 							name={'empleado.diasvacaciones'}
-							isDisabled={false}
-							id={'uniforms-0000-0009'}
+							isDisabled={true}
+							id={'uniforms-0002-0009'}
 							placeholder={''}
 							step={1}
 							value={empleado__diasvacaciones}
@@ -220,13 +184,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-000a'}
+						fieldId={'uniforms-0002-000a'}
 						label={'Dni'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.dni'}
-							id={'uniforms-0000-000a'}
-							isDisabled={false}
+							id={'uniforms-0002-000a'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__dni}
@@ -234,14 +198,14 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-000c'}
+						fieldId={'uniforms-0002-000c'}
 						label={'Edad'}
 						isRequired={false}>
 						<TextInput
 							type={'number'}
 							name={'empleado.edad'}
-							isDisabled={false}
-							id={'uniforms-0000-000c'}
+							isDisabled={true}
+							id={'uniforms-0002-000c'}
 							placeholder={''}
 							step={1}
 							value={empleado__edad}
@@ -249,13 +213,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-000d'}
+						fieldId={'uniforms-0002-000d'}
 						label={'Estado'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.estado'}
-							id={'uniforms-0000-000d'}
-							isDisabled={false}
+							id={'uniforms-0002-000d'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__estado}
@@ -263,14 +227,14 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-000f'}
+						fieldId={'uniforms-0002-000f'}
 						label={'Idempleado'}
 						isRequired={false}>
 						<TextInput
 							type={'number'}
 							name={'empleado.idempleado'}
-							isDisabled={false}
-							id={'uniforms-0000-000f'}
+							isDisabled={true}
+							id={'uniforms-0002-000f'}
 							placeholder={''}
 							step={1}
 							value={empleado__idempleado}
@@ -280,13 +244,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-000g'}
+						fieldId={'uniforms-0002-000g'}
 						label={'Nombre'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.nombre'}
-							id={'uniforms-0000-000g'}
-							isDisabled={false}
+							id={'uniforms-0002-000g'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__nombre}
@@ -294,13 +258,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-000h'}
+						fieldId={'uniforms-0002-000h'}
 						label={'Ordenadorserialnumber'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.ordenadorserialnumber'}
-							id={'uniforms-0000-000h'}
-							isDisabled={false}
+							id={'uniforms-0002-000h'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__ordenadorserialnumber}
@@ -308,13 +272,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-000i'}
+						fieldId={'uniforms-0002-000i'}
 						label={'Rol'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.rol'}
-							id={'uniforms-0000-000i'}
-							isDisabled={false}
+							id={'uniforms-0002-000i'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__rol}
@@ -322,13 +286,13 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 						/>
 					</FormGroup>
 					<FormGroup
-						fieldId={'uniforms-0000-000j'}
+						fieldId={'uniforms-0002-000j'}
 						label={'Telefono'}
 						isRequired={false}>
 						<TextInput
 							name={'empleado.telefono'}
-							id={'uniforms-0000-000j'}
-							isDisabled={false}
+							id={'uniforms-0002-000j'}
+							isDisabled={true}
 							placeholder={''}
 							type={'text'}
 							value={empleado__telefono}
@@ -337,36 +301,7 @@ const Form__AltaEmpleado: React.FC<any> = (props: any) => {
 					</FormGroup>
 				</CardBody>
 			</Card>
-			<FormGroup
-				fieldId={'uniforms-0000-000l'}
-				label={'Empleado id'}
-				isRequired={false}>
-				<TextInput
-					type={'number'}
-					name={'empleadoId'}
-					isDisabled={false}
-					id={'uniforms-0000-000l'}
-					placeholder={''}
-					step={1}
-					value={empleadoId}
-					onChange={(newValue) => set__empleadoId(Number(newValue))}
-				/>
-			</FormGroup>
-			<FormGroup
-				fieldId={'uniforms-0000-000m'}
-				label={'Ordenadorserialnumber'}
-				isRequired={false}>
-				<TextInput
-					name={'ordenadorserialnumber'}
-					id={'uniforms-0000-000m'}
-					isDisabled={false}
-					placeholder={''}
-					type={'text'}
-					value={ordenadorserialnumber}
-					onChange={set__ordenadorserialnumber}
-				/>
-			</FormGroup>
 		</div>
 	);
 };
-export default Form__AltaEmpleado;
+export default Form__AltaEmpleado_asignarDiasVacacionesManualmente;
